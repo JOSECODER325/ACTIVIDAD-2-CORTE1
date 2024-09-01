@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - EDUTRACK</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/registrarse.css"> <!-- CSS específico para la página de registro -->
+</head>
+<body>
+    <!-- Formulario de registro -->
+    <section class="register-container">
+        <h1>Registrarse</h1>
+        <form id="registerForm">
+            <input type="text" name="nombreCompleto" placeholder="Nombre Completo" required>
+            <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Correo Electrónico" required>
+            <input type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirmar Contraseña" required>
+            <button type="submit">Registrarse</button>
+            <a href="inicioDeSesion.html">¿Ya tienes una cuenta? Inicia sesión</a>
+        </form>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Contactanos: Teléfono: 01 8000 4354 | Celular: +57 123456789</p>
+    </footer>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const correoElectronico = document.getElementById('correoElectronico').value;
+            const usuario = document.getElementById('usuario').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const confirmarContrasena = document.getElementById('confirmarContrasena').value;
+
+            // Verificar que las contraseñas coincidan
+            if (contrasena !== confirmarContrasena) {
+                alert('Las contraseñas no coinciden.');
+                return;
+            }
+
+            const user = {
+                email: correoElectronico,
+                username: usuario,
+                password: contrasena
+            };
+
+            localStorage.setItem('user', JSON.stringify(user));
+            alert('Registro exitoso. Ahora puede iniciar sesión.');
+            window.location.href = 'inicioDeSesion.html';
+        });
+    </script>
+</body>
+</html>
+
+
